@@ -1,0 +1,154 @@
+\documentclass[dvipdfm,notypeinfo]{CASthesis}
+% 可选参数：
+% notypeinfo 取消扉页的LaTeX版本信息
+%
+% 下面三个选一个：
+% dvipdfm 使用 dvipdfm(x) 生成最终的 PDF 文档 (缺省设置）
+% dvips 使用 dvips 生成最终的 PS 文档
+% pdftex 使用 pdfLaTeX 生成最终的 PDF 文档
+
+% 取消链接的颜色（黑白打印时）
+\hypersetup{colorlinks=false}
+
+% 小节标题靠左对齐
+\CTEXsetup[format+={\flushleft}]{section}
+
+% 添加的宏包
+\usepackage{booktabs}    % 使用表格(三线表)
+%%%%%%%%%%%%修改页边距%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}
+\geometry{left=2.54cm,right=2.54cm,top=2.5cm,bottom=2.5cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\usepackage[numbers]{natbib}
+%\usepackage[super]{natbib}
+%\usepackage{cite}
+
+\newtheorem{Theorem}{定理}[chapter]
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{multirow}
+\usepackage{longtable} %页面同宽表格
+\usepackage{floatrow}  %图片并排
+\usetikzlibrary{arrows,shapes}
+
+\definecolor{mygray}{rgb}{.5,.5,.5}
+\definecolor{darkred}{rgb}{.5,0,0}
+\definecolor{darkgreen}{rgb}{0,.5,0}
+\definecolor{mymaroon}{rgb}{1,0,1}
+\definecolor{mycyan}{rgb}{0,1,1}
+
+
+\definecolor{myyellow}{rgb}{1,1,0}
+\definecolor{myred}{rgb}{0.5,0,0}
+
+
+%去掉图标编号中的冒号
+\makeatletter
+\def\fnum@figure#1{\figurename\nobreakspace\thefigure
+      \hspace{0.5em}}
+\def\fnum@table#1{\tablename\nobreakspace\thetable
+      \hspace{0.5em}}
+\makeatother
+\setcounter{table}{1}
+%%%%%%%%%%%%%%%%%%%%自己添加%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\ctexset{subsection={format+={\raggedright}}                          %二级标题左对齐
+\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}  %参考文献上标
+%\renewcommand{\theequation}{\thechapter--\arabic{equation}} %公式标号修改(3.1改为3-1)
+%\renewcommand{\thefigure}{\thechapter--\arabic{figure}}      %修改图标题（3.1改为3-1）
+\renewcommand{\thetable}{\thechapter-\arabic{table}}         %修改表标题
+\CTEXoptions[captiondelimiter={\hspace{0.5em}}]
+%%%%%%%%修改图的标题为五号%%%%%%%%%%%%%%%%%
+\makeatletter
+\renewcommand{\fnum@figure}[1]{\zihao{5}\figurename~\thefigure\quad}
+\makeatother
+%%%%%%%%%%%%%%%%%%修改表题为五号字体%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\renewcommand{\fnum@table}[1]{\zihao{5}\tablename~\thetable\quad}
+\makeatother
+%%%%%%%%%%%%%%跨页公式自动换页%%%%%%%%%%%%%%%%%%%%%
+%\allowdisplaybreaks[4]
+
+
+
+
+\begin{document}
+
+\chapter{XXXX}
+\chapter{XXXX}
+
+
+从表\ref{JDA_Acc}可以看出XXXX
+
+\begin{table*}[!htbp] \caption{基于JDA} \label{JDA_Acc}
+ \centering
+ \resizebox{16cm}{3.5cm}{
+ \begin{tabular}{ccccccccccccccc}
+  \toprule
+  Task &KNN &GFK &CORAL &JDA &CMSDD &JDA+MV &JDA+WMV &JDA+AF &JDA+WAF &JDA+AFC &JDA+DS &JDA+DSC &JDA+WDS &JDA+WDSC \\
+  \hline
+  C$\to$A         &22.76 &41.02 &20.15 &45.93
+  &\multirow{3}*{41.78}
+  &\multirow{3}*{40.08}
+  &\multirow{3}*{45.30}
+  &\multirow{3}*{44.15}
+  &\multirow{3}*{46.66}
+  &\multirow{3}*{\emph{45.28$\pm$0.08}}
+  &\multirow{3}*{44.15}
+  &\multirow{3}*{\emph{46.21$\pm$0.03}}
+  &\multirow{3}*{\textbf{46.76}}
+  &\multirow{3}*{\emph{\textbf{{49.48}$\pm$0.05}}}   \\
+  D$\to$A         &26.62   &32.05 &30.69  &32.67  \\
+  W$\to$A        &22.65   &31.84 &26.20 &39.77  \\
+ \hline
+  A$\to$C   &24.04 &40.25 &23.06 &41.05
+  &\multirow{3}*{44.61}
+  &\multirow{3}*{37.76}
+  &\multirow{3}*{40.69}
+  &\multirow{3}*{42.56}
+  &\multirow{3}*{44.52}
+  &\multirow{3}*{\emph{43.21$\pm$0.02}}
+  &\multirow{3}*{43.37}
+  &\multirow{3}*{\emph{44.01$\pm$0.02}}
+  &\multirow{3} *{\textbf{45.75}}
+  &\multirow{3}*{\emph{\textbf{46.60$\pm$0.04}}} \\
+  D$\to$C        &26.09 &30.10 &32.06 &29.12  \\
+  W$\to$C       &18.08 &30.72 &25.73 &31.97  \\
+ \hline
+  A$\to$D    &23.57 &36.61 &30.75 &42.04
+  &\multirow{3}*{73.85}
+  &\multirow{3}*{58.60}
+  &\multirow{3}*{73.25}
+  &\multirow{3}*{77.71}
+  &\multirow{3}*{80.25}
+  &\multirow{3}*{\emph{77.73$\pm$0.17}}
+  &\multirow{3}*{{74.52}}
+  &\multirow{3}*{\emph{77.12$\pm$0.04}}
+  &\multirow{3}*{\textbf{80.25}}
+  &\multirow{3}*{\emph{\textbf{82.57$\pm$0.05}}}\\
+  C$\to$D    &24.84 &41.40 &26.75 &49.68   \\
+  W$\to$D   &44.59 &77.90 &73.25 &79.62 \\
+ \hline
+  A$\to$W   &27.12 &40.00 &26.10 &38.64
+  &\multirow{3}*{62.71}
+  &\multirow{3}*{52.24}
+  &\multirow{3}*{68.47}
+  &\multirow{3}*{61.69}
+  &\multirow{3}*{66.10}
+  &\multirow{4}*{\emph{62.38$\pm$0.83}}
+  &\multirow{3}*{62.03}
+  &\multirow{3}*{\emph{63.91$\pm$0.10}}
+  &\multirow{3}*{\textbf{70.51}}
+  &\multirow{3}*{\emph{\textbf{72.57$\pm$0.12}}}\\
+  C$\to$W       &26.10 &40.68 &19.66 &46.10\\
+  D$\to$W       &43.73    &64.41 &63.56 &68.81\\
+  \hline
+  Average    &27.52 &40.25 &33.16 &45.45 &55.74 &47.17 &56.92 &56.53 &59.38 &\emph{57.15} &56.01 &\emph{57.60} &\textbf{60.84} &\emph{\textbf{62.59}}\\
+  \bottomrule
+ \end{tabular}}
+\end{table*}
+
+\end{document}
